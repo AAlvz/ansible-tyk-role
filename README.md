@@ -68,6 +68,9 @@ config_file:
 
 ## Example Playbook
 
-    - hosts: server
-      roles:
-        - { role: tyk }
+```yaml
+- hosts: server
+  roles:
+    - { role: tyk }
+```
+
