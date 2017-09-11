@@ -1,0 +1,38 @@
+---
+tyk_gateway_port: 8080
+
+redishost: localhost
+redisport: 6379
+
+config_file:
+  users_api:
+    api_name: "Users API"
+    listen_path: "/api/v1/users"
+    target_url: "http://{{ target_host }}:4001/api/v1/users"
+    api_id: "1"
+    org_id: "1"
+  engine_api:
+    api_name: "Engine API"
+    listen_path: "/api/v1/project"
+    target_url: "http://{{ target_host }}:4002/api/v1/project"
+    api_id: "2"
+    org_id: "2"
+  gh_servive_api:
+    api_name: "Github Service API"
+    listen_path: "/api/v1/repository"
+    target_url: "http://{{ target_host }}:3336/api/v1/repository"
+    api_id: "3"
+    org_id: "3"
+  do_servive_api:
+    api_name: "Digital Ocean Service API"
+    listen_path: "/api/v1/cloud"
+    target_url: "http://{{ target_host }}:3337/api/v1/cloud"
+    api_id: "4"
+    org_id: "4"
+  ears_api:
+    api_name: "Ears API"
+    listen_path: "/api/v1/provision"
+    target_url: "http://{{ target_host }}:8000/api/v1/provision"
+    api_id: "5"
+    org_id: "5"
+target_host: 104.236.28.169

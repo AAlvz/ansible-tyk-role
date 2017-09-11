@@ -1,0 +1,63 @@
+{
+    "name": "{{ config_file[item].api_name }}",
+    "api_id": "{{ config_file[item].api_id }}",
+    "org_id": "{{ config_file[item].org_id }}",
+    "use_keyless": true,
+    "use_oauth2": false,
+    "use_openid": false,
+    "openid_options": {
+        "providers": null,
+        "segregate_by_client": false
+    },
+    "oauth_meta": {
+        "allowed_access_types": null,
+        "allowed_authorize_types": null,
+        "auth_login_redirect": ""
+    },
+    "auth": {
+        "use_param": false,
+        "param_name": "",
+        "use_cookie": false,
+        "cookie_name": "",
+        "auth_header_name": ""
+    },
+    "use_basic_auth": false,
+    "enable_jwt": false,
+    "use_standard_auth": false,
+    "enable_coprocess_auth": false,
+    "jwt_signing_method": "",
+    "jwt_source": "",
+    "jwt_identity_base_field": "",
+    "jwt_client_base_field": "",
+    "jwt_policy_field_name": "",
+    "notifications": {
+        "shared_secret": "",
+        "oauth_on_keychange_url": ""
+    },
+
+    "definition": {
+        "location": "header",
+        "key": "version"
+    },
+    "version_data": {
+        "not_versioned": true,
+        "versions": {
+            "Default": {
+                "name": "Default",
+                "expires": "3000-01-02 15:04",
+                "use_extended_paths": true,
+                "extended_paths": {
+                    "ignored": [],
+                    "white_list": [],
+                    "black_list": []
+                }
+            }
+        }
+    },
+    "proxy": {
+        "listen_path": "{{ config_file[item].listen_path }}",
+        "target_url": "{{ config_file[item].target_url }}",
+        "strip_listen_path": true
+    },
+    "enable_batch_request_support": true
+}

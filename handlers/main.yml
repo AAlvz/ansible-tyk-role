@@ -1,0 +1,6 @@
+---
+- name: Start Tyk-Gateway
+  service: name=tyk-gateway state=started
+
+- name: Restart Tyk-Gateway
+  service: name=tyk-gateway state=restarted

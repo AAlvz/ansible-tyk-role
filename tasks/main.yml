@@ -1,0 +1,25 @@
+---
+- name: Add Tyk-Gateway Repository
+  shell: curl -s https://packagecloud.io/install/repositories/tyk/tyk-gateway/script.deb.sh | sudo bash
+
+- name: Install Tyk-Gateway
+  apt: name=tyk-gateway state=present update_cache=yes
+
+- name: Configure Tyk Gateway
+  shell: /opt/tyk-gateway/install/setup.sh --listenport={{ tyk_gateway_port }} --redishost={{ redishost }} --redisport={{ redisport }} --domain=""
+  notify:
+      - Start Tyk-Gateway
+
+- name: Clean Config Folder
+  file: path="{{ tyk_repo_path }}app_sample.json" state=absent
+
+- name: Create Files Config Files
+  template: 
+    src: keyless_config_base.j2
+    dest: "{{ tyk_repo_path }}{{ item }}.json"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - "{{config_file | list}}"
+  tags: test

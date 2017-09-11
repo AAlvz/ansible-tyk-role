@@ -1,0 +1,4 @@
+---
+tyk_repo_config_files: "https://github.com/Tinker-Ware/api-gateway-config-files.git"
+tyk_repo_path: "/opt/tyk-gateway/apps/"
+
