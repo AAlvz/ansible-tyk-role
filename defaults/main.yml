@@ -1,8 +1,10 @@
 ---
-tyk_gateway_port: 8080
+tyk_gateway_port: "8080"
+tyk_secret: "352d20ee67be67f6340b4c0605b044b7"
+tyk_hash: "false"
 
-redishost: localhost
-redisport: 6379
+redishost: "localhost"
+redisport: "6379"
 
 config_file:
   users_api:
@@ -29,10 +31,23 @@ config_file:
     target_url: "http://{{ target_host }}:3337/api/v1/cloud"
     api_id: "4"
     org_id: "4"
-  ears_api:
-    api_name: "Ears API"
+  ears_api_provision:
+    api_name: "Ears API provision"
     listen_path: "/api/v1/provision"
     target_url: "http://{{ target_host }}:8000/api/v1/provision"
     api_id: "5"
     org_id: "5"
-target_host: 104.236.28.169
+  ears_api_generate:
+    api_name: "Ears API generate"
+    listen_path: "/api/v1/generate"
+    target_url: "http://{{ target_host }}:8000/api/v1/generate"
+    api_id: "6"
+    org_id: "6"
+  ears_api_refresh:
+    api_name: "Ears API refresh"
+    listen_path: "/api/v1/refresh"
+    target_url: "http://{{ target_host }}:8000/api/v1/refresh"
+    api_id: "7"
+    org_id: "7"
+
+target_host: "localhost"
