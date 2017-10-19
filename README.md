@@ -54,11 +54,11 @@ config_file:
     org_id: "UUID"
 ```
 
-- N number of file_name are written as the amount of APIs are going to be set up. 
+- N number of file_name are written as the amount of APIs are going to be set up.
   - api_name:  The name of the API.
   - listen_path: The base path Tyk should listen to.
   - target_url: The url which Tyk is going to redirect to.
-  - api_id: The Unique ID for the API.
+  - api_id: The unique ID for the API.
   - org_id: The ID linked to key generation.
 
 ## Dependencies
@@ -73,4 +73,3 @@ config_file:
   roles:
     - { role: tyk }
 ```
-

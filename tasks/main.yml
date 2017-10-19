@@ -5,21 +5,41 @@
 - name: Install Tyk-Gateway
   apt: name=tyk-gateway state=present update_cache=yes
 
-- name: Configure Tyk Gateway
-  shell: /opt/tyk-gateway/install/setup.sh --listenport={{ tyk_gateway_port }} --redishost={{ redishost }} --redisport={{ redisport }} --domain=""
+#- name: Configure Tyk Gateway
+#  shell: /opt/tyk-gateway/install/setup.sh --listenport="{{ tyk_gateway_port }}" --redishost="{{ redishost }}" --redisport="{{ redisport }}" --domain=""
+#  notify:
+#      - Start Tyk-Gateway
+
+- name: Set config file
+  template:
+    src: config_file.j2
+    dest: "{{ tyk_path }}/tyk.conf"
+    owner: "root"
+    group: "root"
+    mode: 0644
   notify:
       - Start Tyk-Gateway
 
-- name: Clean Config Folder
-  file: path="{{ tyk_repo_path }}app_sample.json" state=absent
+- name: Delete API config folder
+  file: path="{{ tyk_api_configs_path }}/" state=absent
+
+- name: Create API config folder
+  file:
+    dest: "{{ tyk_api_configs_path }}"
+    owner: "root"
+    group: "root"
+    mode: 0755
+    state: directory
+  sudo: yes
 
 - name: Create Files Config Files
-  template: 
+  template:
     src: keyless_config_base.j2
-    dest: "{{ tyk_repo_path }}{{ item }}.json"
+    dest: "{{ tyk_api_configs_path }}/{{ item }}.json"
     owner: root
     group: root
     mode: 0644
   with_items:
-    - "{{config_file | list}}"
-  tags: test
+    - "{{ config_file | list }}"
+  notify:
+      - Restart Tyk-Gateway
