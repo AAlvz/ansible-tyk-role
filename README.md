@@ -63,7 +63,6 @@ config_file:
 
 ## Dependencies
 
-- MongoDB
 - RedisDB
 
 ## Example Playbook
