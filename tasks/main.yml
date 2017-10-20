@@ -25,7 +25,9 @@
       - Start Tyk-Gateway
 
 - name: Delete API config folder
-  file: path="{{ tyk_api_configs_path }}/" state=absent
+  file: 
+    path: "{{ tyk_api_configs_path }}/" 
+    state: absent
 
 - name: Create API config folder
   file:
