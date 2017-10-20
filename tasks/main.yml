@@ -1,14 +1,18 @@
 ---
+- name: Download Tyk-Gateway Repository 
+  get_url:
+    url: "https://packagecloud.io/install/repositories/tyk/tyk-gateway/script.deb.sh"
+    dest: /tmp/
+    mode: 0755
+
 - name: Add Tyk-Gateway Repository
-  shell: curl -s https://packagecloud.io/install/repositories/tyk/tyk-gateway/script.deb.sh | sudo bash
+  shell: "/tmp/script.deb.sh"
 
 - name: Install Tyk-Gateway
-  apt: name=tyk-gateway state=present update_cache=yes
-
-#- name: Configure Tyk Gateway
-#  shell: /opt/tyk-gateway/install/setup.sh --listenport="{{ tyk_gateway_port }}" --redishost="{{ redishost }}" --redisport="{{ redisport }}" --domain=""
-#  notify:
-#      - Start Tyk-Gateway
+  apt: 
+    name: tyk-gateway 
+    state: present 
+    update_cache: yes
 
 - name: Set config file
   template:
