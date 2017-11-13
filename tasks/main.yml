@@ -8,11 +8,14 @@
 - name: Add Tyk-Gateway Repository
   shell: "/tmp/script.deb.sh"
 
+- name: Update repository
+  shell: "apt-get update"
+
 - name: Install Tyk-Gateway
   apt: 
     name: tyk-gateway 
     state: present 
-    update_cache: yes
+    #update_cache: yes
 
 - name: Set config file
   template:
