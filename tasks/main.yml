@@ -36,7 +36,6 @@
     group: "root"
     mode: 0755
     state: directory
-  sudo: yes
 
 - name: Create Files Config Files
   template:
